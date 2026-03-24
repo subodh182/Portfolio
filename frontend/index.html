@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Subodh Singh - BTech CS & Aspiring AI Developer Portfolio">
+    <title>Subodh Singh | AI Developer & CS Student</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dark-theme">
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <!-- Loading Screen -->
+    <div id="loader" class="loader-wrapper">
+        <div class="loader-content">
+            <span class="loader-text">Loading...</span>
+            <div class="loader-progress"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#home">S<span>.</span>Singh</a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="theme-switch" id="theme-toggle">
+                <!-- SVG Icon for theme toggle -->
+                <svg id="theme-icon-light" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="hero-section">
+            <div id="particles-js"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Hi, I'm <span class="highlight">Subodh Singh</span></h1>
+                <h2 class="hero-roles">I am a <span class="typing-text"></span></h2>
+                <p class="hero-description">BTech Computer Science student crafting futuristic web experiences and AI
+                    solutions.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn primary-btn" style="cursor: none;">View My Work</a>
+                    <a href="#contact" class="btn outline-btn" style="cursor: none;">Contact Me</a>
+                    <a href="assets/Subodh_Singh_SE.pdf" download="Subodh_Singh_Resume.pdf" class="btn outline-btn"
+                        style="cursor: none; background: rgba(99,102,241,0.1); border-color: var(--primary);">Download
+                        Resume</a>
+                </div>
+            </div>
+            <div class="hero-graphics">
+                <div class="abstract-shape shape-1"></div>
+                <div class="abstract-shape shape-2"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container section-content flex-row">
+                <div class="section-image animate-on-scroll">
+                    <!-- Placeholder for profile image -->
+                    <div class="image-wrapper">
+                        <img src="assets/profile.png" alt="Subodh Singh - Profile Photo" class="profile-img">
+                    </div>
+                </div>
+                <div class="section-text animate-on-scroll delay-1">
+                    <h2 class="section-title">About Me</h2>
+                    <p>I am a passionate BTech Computer Science student with a deep interest in Artificial Intelligence
+                        and modern web development. My journey involves bridging cutting-edge technology with visually
+                        stunning user experiences.</p>
+                    <p>When I'm not coding, I'm exploring new AI tools or refining my skills in software architecture
+                        and algorithms.</p>
+
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <h3 class="counter" data-target="20">0</h3>
+                            <span>+ Projects Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="counter" data-target="15">0</h3>
+                            <span>+ Technologies Learned</span>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="counter" data-target="500">0</h3>
+                            <span>+ GitHub Contributions</span>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="counter" data-target="5">0</h3>
+                            <span>AI Projects Built</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section with Chart.js -->
+        <section id="skills" class="section">
+            <div class="container flex-row" style="align-items: flex-start;">
+                <div class="section-text" style="flex: 1;">
+                    <h2 class="section-title">My Skills</h2>
+                    <p>Here's a breakdown of my technical proficiencies visualized through data.</p>
+                    <div class="skills-grid" style="grid-template-columns: 1fr;">
+                        <div class="skill-card animate-on-scroll">
+                            <h3>Python</h3>
+                            <div class="progress-bar">
+                                <div class="progress" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card animate-on-scroll delay-1">
+                            <h3>JavaScript</h3>
+                            <div class="progress-bar">
+                                <div class="progress" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card animate-on-scroll delay-2">
+                            <h3>Node.js</h3>
+                            <div class="progress-bar">
+                                <div class="progress" data-width="80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-text animate-on-scroll" style="flex: 1; display: flex; justify-content: center;">
+                    <div style="width: 100%; max-width: 400px;">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Contribution Graph Section -->
+        <section id="contributions" class="section">
+            <div class="container flex-col-center">
+                <h2 class="section-title text-center">GitHub Contributions</h2>
+                <div class="contribution-graph-card animate-on-scroll"
+                    style="width: 100%; max-width: 900px; padding: 2rem; background: var(--card-bg); border-radius: 1rem; border: 1px solid var(--border);">
+                    <img id="github-chart" src="https://ghchart.rshah.org/6366f1/subodh182"
+                        alt="Subodh's Github chart" style="width: 100%;" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section bg-alt">
+            <div class="container">
+                <h2 class="section-title text-center">Featured Projects</h2>
+                <div class="project-search-container animate-on-scroll"
+                    style="display: flex; justify-content: center; margin-bottom: 2rem;">
+                    <input type="text" id="project-search-bar" placeholder="Search projects by name, tech..."
+                        style="width: 100%; max-width: 500px; padding: 0.8rem 1.5rem; border-radius: 20px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text-color); font-family: var(--font-body); font-size: 1rem; transition: var(--transition-smooth);">
+                </div>
+                <div class="filter-controls animate-on-scroll">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="Python">Python</button>
+                    <button class="filter-btn" data-filter="JavaScript">JavaScript</button>
+                    <button class="filter-btn" data-filter="Node.js">Node.js</button>
+                    <button class="filter-btn" data-filter="HTML">HTML</button>
+                </div>
+                <div class="projects-grid" id="github-projects-grid">
+                    <div class="loader-content github-loader">
+                        <span class="loader-text" style="font-size: 1rem;">Fetching Repos...</span>
+                        <div class="loader-progress" style="width: 100px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Resume Analyzer Section -->
+        <section id="resume-analyzer" class="section bg-alt">
+            <div class="container flex-col-center">
+                <h2 class="section-title text-center">AI Resume Analyzer Tool</h2>
+                <p class="text-center mb-2">Upload your resume (PDF) and let my Groq-powered AI give you feedback!</p>
+                <div class="resume-upload-card animate-on-scroll">
+                    <form id="resume-form" enctype="multipart/form-data">
+                        <input type="file" id="resume-file" name="resume" accept=".pdf" required class="file-input">
+                        <button type="submit" class="btn primary-btn submit-btn mt-2">
+                            <span>Analyze Resume</span>
+                            <div class="btn-loader loader-hidden"></div>
+                        </button>
+                    </form>
+                    <div id="resume-feedback-dashboard" class="hidden" style="margin-top: 2rem; width: 100%;">
+                        <!-- Dynamic JSON UI generated via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Skill Recommendation Tool -->
+        <section id="skill-recommender" class="section">
+            <div class="container flex-col-center">
+                <h2 class="section-title text-center">AI Skill Recommender</h2>
+                <p class="text-center mb-2">Tell the AI what technologies you currently know, and get 3 next-level
+                    skills to learn!</p>
+                <div class="recommender-card animate-on-scroll"
+                    style="width: 100%; max-width: 600px; background: var(--card-bg); padding: 2.5rem; border-radius: 1rem; border: 1px solid var(--border); backdrop-filter: blur(12px);">
+                    <form id="recommender-form">
+                        <input type="text" id="skills-input" placeholder="e.g. Python, HTML, CSS" required
+                            class="file-input" style="cursor: text;">
+                        <button type="submit" class="btn primary-btn submit-btn mt-2" style="width: 100%;">
+                            <span>Get Recommendations</span>
+                            <div class="btn-loader loader-hidden"></div>
+                        </button>
+                    </form>
+                    <div id="recommender-results" class="hidden" style="margin-top: 1.5rem;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title text-center">Journey & Achievements</h2>
+                <div class="timeline">
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>BTech Computer Science</h3>
+                            <span class="timeline-date">Present</span>
+                            <p>Currently on a journey in Computer Science, exploring Artificial Intelligence and
+                                building modern web applications.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Hackathon Participant</h3>
+                            <span class="timeline-date">2024 - 2025</span>
+                            <p>Participated in Smart India Hackathon (SIH), gaining hands-on experience in
+                                problem-solving, teamwork, and building innovative technology solutions for real-world
+                                challenges.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Self-Taught FullStack Developer</h3>
+                            <span class="timeline-date">2024 - Present</span>
+                            <p>Actively learning and developing real-world projects while exploring Artificial
+                                Intelligence, modern web technologies, and innovative digital solutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="section">
+            <div class="container">
+                <h2 class="section-title text-center">Tech Blog</h2>
+                <div class="blog-grid">
+                    <article class="blog-card animate-on-scroll">
+                        <div class="blog-image" style="background: linear-gradient(135deg, #4f46e5, #ec4899);"></div>
+                        <div class="blog-content">
+                            <span class="blog-date">March 2026</span>
+                            <h3>AI Resume Analyzer</h3>
+                            <p>AI Resume Analyzer is an intelligent web application that analyzes resumes and provides
+                                meaningful feedback to help candidates improve their profiles. It evaluates strengths,
+                                identifies missing skills, and suggests improvements to make the resume more effective
+                                and ATS-friendly. This tool helps job seekers optimize their resumes and increase their
+                                chances of standing out in competitive hiring processes.</p>
+                            <a href="https://ai-resume-analyser-khaki.vercel.app/" class="read-more">Read More
+                                &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="blog-card animate-on-scroll delay-1">
+                        <div class="blog-image" style="background: linear-gradient(135deg, #10b981, #3b82f6);"></div>
+                        <div class="blog-content">
+                            <span class="blog-date">February 2026</span>
+                            <h3>Expense Tracker Webapp</h3>
+                            <p>A simple and user-friendly web application that helps users track their income and
+                                expenses, manage transactions, and monitor spending habits to maintain better control
+                                over personal finances.</p>
+                            <a href="https://expense-tracker-one-zeta-84.vercel.app/" class="read-more">Read More
+                                &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section">
+            <div class="container">
+                <h2 class="section-title text-center">Testimonials</h2>
+                <div class="testimonial-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="testimonial-card animate-on-scroll"
+                        style="padding: 2rem; background: var(--card-bg); border-radius: 1rem; border: 1px solid var(--border); position: relative;">
+                        <div
+                            style="font-size: 3rem; color: var(--primary); opacity: 0.2; position: absolute; top: 10px; right: 20px;">
+                            "</div>
+                        <p style="font-style: italic; margin-bottom: 1.5rem;">"Subodh is an incredibly fast learner and
+                            has a deep understanding of weaving AI natively into web applications."</p>
+                        <h4 style="color: var(--primary);">Alex J.</h4>
+                        <span style="font-size: 0.8rem; color: var(--subtext);">Senior Developer</span>
+                    </div>
+                    <div class="testimonial-card animate-on-scroll delay-1"
+                        style="padding: 2rem; background: var(--card-bg); border-radius: 1rem; border: 1px solid var(--border); position: relative;">
+                        <div
+                            style="font-size: 3rem; color: var(--primary); opacity: 0.2; position: absolute; top: 10px; right: 20px;">
+                            "</div>
+                        <p style="font-style: italic; margin-bottom: 1.5rem;">"The speed at which he implements complex
+                            features into a clean Vercel serverless architecture is outstanding."</p>
+                        <h4 style="color: var(--primary);">Sarah L.</h4>
+                        <span style="font-size: 0.8rem; color: var(--subtext);">Tech Lead</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section bg-alt">
+            <div class="container flex-col-center">
+                <h2 class="section-title text-center">Get In Touch</h2>
+                <p class="text-center mb-2">Have a question or want to work together? Let's talk!</p>
+                <form id="contact-form" class="contact-form animate-on-scroll">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" required placeholder="Your Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn submit-btn">
+                        <span>Send Message</span>
+                        <div class="btn-loader loader-hidden"></div>
+                    </button>
+                    <div id="form-message" class="form-message"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 Subodh Singh. Designed with ❤️ & Code.</p>
+            <div class="social-links">
+                <a href="https://github.com/subodh182">GitHub</a>
+                <a href="https://www.linkedin.com/in/subodh-singh-0751082b2">LinkedIn</a>
+                <a href="https://x.com/shiv119000">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot UI & Voice Assistant -->
+    <div class="chatbot-wrapper" id="chatbot-wrapper">
+        <div class="chatbot-window hidden" id="chatbot-window">
+            <div class="chatbot-header">
+                <h3>Subodh AI Assistant</h3>
+                <button id="chatbot-close">&times;</button>
+            </div>
+            <div class="chatbot-body" id="chatbot-body">
+                <div class="bot-message bubble">Hi there! I'm Subodh's AI assistant. Ask me about his skills, projects,
+                    or experience!</div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-text" placeholder="Type a message..." aria-label="Type a message">
+                <button id="chatbot-send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button id="voice-assistant-btn" class="chat-btn" aria-label="Voice Assistant"
+                style="background: linear-gradient(135deg, #10b981, #047857); display: flex; align-items: center; justify-content: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <line x1="12" y1="19" x2="12" y2="22"></line>
+                </svg>
+            </button>
+            <button class="chatbot-toggle" id="chatbot-toggle"
+                style="display: flex; align-items: center; justify-content: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Case Study Modal (Hidden by Default) -->
+    <div id="case-study-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Project Title</h3>
+                <button id="modal-close" class="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Data populated dynamically -->
+                <div class="modal-nav">
+                    <a id="modal-live-btn" href="#" target="_blank" class="btn primary-btn"
+                        style="padding: 0.5rem 1rem;">View Live Demo</a>
+                    <a id="modal-repo-btn" href="#" target="_blank" class="btn outline-btn"
+                        style="padding: 0.5rem 1rem;">View GitHub Code</a>
+                </div>
+                <div id="modal-readme-box" class="readme-markdown">
+                    <div class="btn-loader"></div> Loading Case Study Insights...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vercel Analytics -->
+    <script defer src="/_vercel/insights/script.js"></script>
+
+    <!-- Chart.js via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
