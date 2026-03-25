@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ===== CUSTOM CURSOR (MAGNETIC & RIPPLE) ===== */
     const cursorDot = document.getElementById('cursor-dot');
     const cursorOutline = document.getElementById('cursor-outline');
-    
+
     if (cursorDot && cursorOutline && window.innerWidth > 768) {
         window.addEventListener('mousemove', (e) => {
             cursorDot.style.left = `${e.clientX}px`;
@@ -43,23 +43,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.style.transform = 'translate(0px, 0px)';
             });
             el.addEventListener('mousemove', (e) => {
-                if(el.classList.contains('magnetic') && el.tagName === 'BUTTON') {
+                if (el.classList.contains('magnetic') && el.tagName === 'BUTTON') {
                     const rect = el.getBoundingClientRect();
                     const x = e.clientX - rect.left - rect.width / 2;
                     const y = e.clientY - rect.top - rect.height / 2;
                     el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
                 }
             });
-            
+
             // Ripple
-            el.addEventListener('click', function(e) {
+            el.addEventListener('click', function (e) {
                 const ripple = document.createElement("span");
                 ripple.classList.add("cursor-ripple");
                 const rect = el.getBoundingClientRect();
                 const size = Math.max(rect.width, rect.height);
                 ripple.style.width = ripple.style.height = `${size}px`;
-                ripple.style.left = `${e.clientX - rect.left - size/2}px`;
-                ripple.style.top = `${e.clientY - rect.top - size/2}px`;
+                ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+                ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
                 this.appendChild(ripple);
                 setTimeout(() => ripple.remove(), 600);
             });
@@ -67,19 +67,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ===== LOADER & THEME TOGGLE ===== */
-    window.addEventListener('load', () => {
+    const hideLoader = () => {
         const loader = document.getElementById('loader');
-        if(loader) { setTimeout(() => { loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 500); }, 800); }
-    });
+        if (loader && loader.style.display !== 'none') {
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500);
+            }, 800);
+        }
+    };
+
+    if (document.readyState === 'complete') {
+        hideLoader();
+    } else {
+        window.addEventListener('load', hideLoader);
+        // Fallback in case external resources fail to load completely
+        setTimeout(hideLoader, 3000);
+    }
 
     const themeToggle = document.getElementById('theme-toggle');
     const lightIcon = document.getElementById('theme-icon-light');
     const darkIcon = document.getElementById('theme-icon-dark');
-    
+
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') { document.body.classList.remove('dark-theme'); lightIcon.style.display = 'none'; darkIcon.style.display = 'block'; } else { document.body.classList.add('dark-theme'); lightIcon.style.display = 'block'; darkIcon.style.display = 'none'; }
 
-    if(themeToggle) {
+    if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
             const isDark = document.body.classList.contains('dark-theme');
@@ -95,16 +108,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const roles = ["Full Stack Developer", "AI Enthusiast", "Python Developer", "Tech Learner"];
     let roleIndex = 0, charIndex = 0, isDeleting = false;
     function type() {
-        if(!typingText) return;
+        if (!typingText) return;
         const currentRole = roles[roleIndex];
-        if (isDeleting) { typingText.textContent = currentRole.substring(0, charIndex - 1); charIndex--; } 
+        if (isDeleting) { typingText.textContent = currentRole.substring(0, charIndex - 1); charIndex--; }
         else { typingText.textContent = currentRole.substring(0, charIndex + 1); charIndex++; }
         let typeSpeed = isDeleting ? 50 : 100;
-        if (!isDeleting && charIndex === currentRole.length) { typeSpeed = 2000; isDeleting = true; } 
+        if (!isDeleting && charIndex === currentRole.length) { typeSpeed = 2000; isDeleting = true; }
         else if (isDeleting && charIndex === 0) { isDeleting = false; roleIndex = (roleIndex + 1) % roles.length; typeSpeed = 500; }
         setTimeout(type, typeSpeed);
     }
-    if(typingText) { typingText.insertAdjacentHTML('afterend', '<span class="typing-cursor">|</span>'); setTimeout(type, 1000); }
+    if (typingText) { typingText.insertAdjacentHTML('afterend', '<span class="typing-cursor">|</span>'); setTimeout(type, 1000); }
 
     /* ===== NAVBAR SCROLL & ACTIVE STATE ===== */
     const navbar = document.getElementById('navbar');
@@ -128,14 +141,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hamburger = document.querySelector('.hamburger');
     const navContainer = document.querySelector('.navbar');
-    if(hamburger) hamburger.addEventListener('click', () => navContainer.classList.toggle('nav-active'));
+    if (hamburger) hamburger.addEventListener('click', () => navContainer.classList.toggle('nav-active'));
     navLinks.forEach(link => link.addEventListener('click', () => navContainer.classList.remove('nav-active')));
 
     /* ===== SCROLL ANIMATIONS & CHART INIT ===== */
     let chartRendered = false;
     let skillsChartInstance = null;
     function updateChartTheme(theme) {
-        if(!skillsChartInstance) return;
+        if (!skillsChartInstance) return;
         const color = theme === 'dark' ? '#f8fafc' : '#0f172a';
         skillsChartInstance.options.scales.r.pointLabels.color = color;
         skillsChartInstance.options.scales.r.grid.color = theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
@@ -160,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         update();
                     });
                 }
-                if(entry.target.querySelector('#skillsChart') && !chartRendered) {
+                if (entry.target.querySelector('#skillsChart') && !chartRendered) {
                     chartRendered = true;
                     const ctx = document.getElementById('skillsChart').getContext('2d');
                     const isDark = document.body.classList.contains('dark-theme');
@@ -204,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderProjects(projectsToRender) {
         const grid = document.getElementById('github-projects-grid');
         grid.innerHTML = '';
-        if(projectsToRender.length === 0) {
+        if (projectsToRender.length === 0) {
             grid.innerHTML = '<p class="text-center" style="width:100%;">No matches found.</p>';
             return;
         }
@@ -227,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.appendChild(card);
         });
     }
-    
+
     fetchGitHubProjects();
 
     const searchBar = document.getElementById('project-search-bar');
@@ -244,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderProjects(filtered);
     }
 
-    if(searchBar) searchBar.addEventListener('input', filterProjects);
+    if (searchBar) searchBar.addEventListener('input', filterProjects);
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
@@ -263,19 +276,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalReadme = document.getElementById('modal-readme-box');
 
     window.openCaseStudy = async (name, url, liveUrl, branch) => {
-        if(!modal) return;
+        if (!modal) return;
         modal.classList.remove('hidden');
         modalTitle.textContent = name.replace(/-/g, ' ').toUpperCase();
         modalRepo.href = url;
-        if(liveUrl && liveUrl !== 'null' && liveUrl !== 'undefined') { modalLive.href = liveUrl; modalLive.style.display = 'inline-flex'; } 
+        if (liveUrl && liveUrl !== 'null' && liveUrl !== 'undefined') { modalLive.href = liveUrl; modalLive.style.display = 'inline-flex'; }
         else { modalLive.style.display = 'none'; }
-        
+
         modalReadme.innerHTML = '<div class="btn-loader"></div> Loading Case Study Insights...';
-        
+
         try {
             const res = await fetch(`/api/github/readme?repo=${name}&branch=${branch}`);
             const data = await res.json();
-            if(data.success) {
+            if (data.success) {
                 // Extremely basic regex-based Markdown to HTML parser for display
                 let html = data.readme
                     .replace(/^### (.*$)/gim, '<h3>$1</h3>')
@@ -288,10 +301,10 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 modalReadme.innerHTML = '<p>Case study notes (README) unavailable for this repository.</p>';
             }
-        } catch(e) { modalReadme.innerHTML = '<p>Failed to parse case study data.</p>'; }
+        } catch (e) { modalReadme.innerHTML = '<p>Failed to parse case study data.</p>'; }
     };
 
-    if(modalCloseBtn) modalCloseBtn.addEventListener('click', () => modal.classList.add('hidden'));
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', () => modal.classList.add('hidden'));
 
     /* ===== VOICE ASSISTANT (WEB SPEECH API) ===== */
     const voiceBtn = document.getElementById('voice-assistant-btn');
@@ -299,18 +312,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatbotToggle = document.getElementById('chatbot-toggle');
     const chatbotBody = document.getElementById('chatbot-body');
 
-    if(voiceBtn && ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
+    if (voiceBtn && ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         const recognition = new SpeechRecognition();
-        
-        recognition.onstart = function() {
+
+        recognition.onstart = function () {
             voiceBtn.classList.add('voice-pulsing');
         };
-        
-        recognition.onresult = async function(event) {
+
+        recognition.onresult = async function (event) {
             const transcript = event.results[0][0].transcript;
             voiceBtn.classList.remove('voice-pulsing');
-            
+
             // Open chatbot to show what is happening
             chatbotWindow.classList.remove('hidden');
             const userBubble = document.createElement('div');
@@ -323,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
             botBubble.className = 'bot-message bubble';
             botBubble.textContent = "Voice Processing...";
             chatbotBody.appendChild(botBubble);
-            
+
             try {
                 const response = await fetch('/api/chat', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: transcript })
@@ -331,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 const reply = data.response;
                 botBubble.textContent = reply || "I didn't quite catch that.";
-                
+
                 // Speak back
                 const utterance = new SpeechSynthesisUtterance(botBubble.textContent);
                 utterance.rate = 1.1; // Make it sound snappier
@@ -340,8 +353,8 @@ document.addEventListener('DOMContentLoaded', () => {
             chatbotBody.scrollTop = chatbotBody.scrollHeight;
         };
 
-        recognition.onerror = function() { voiceBtn.classList.remove('voice-pulsing'); };
-        
+        recognition.onerror = function () { voiceBtn.classList.remove('voice-pulsing'); };
+
         voiceBtn.addEventListener('click', () => {
             window.speechSynthesis.cancel(); // Stop anything currently speaking
             recognition.start();
@@ -377,23 +390,23 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ===== AI RESUME ANALYZER (STRUCTURED DASHBOARD) ===== */
     const resumeForm = document.getElementById('resume-form');
     const feedbackDash = document.getElementById('resume-feedback-dashboard');
-    if(resumeForm) {
+    if (resumeForm) {
         resumeForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const fileInput = document.getElementById('resume-file');
             const submitBtn = resumeForm.querySelector('.submit-btn span');
-            if(!fileInput.files[0]) return;
-            
+            if (!fileInput.files[0]) return;
+
             submitBtn.textContent = 'Extracting Details...';
             feedbackDash.innerHTML = ''; feedbackDash.classList.add('hidden');
-            
+
             const formData = new FormData(); formData.append('resume', fileInput.files[0]);
             try {
                 const response = await fetch('/api/analyze-resume', { method: 'POST', body: formData });
                 const data = await response.json();
-                
+
                 feedbackDash.classList.remove('hidden');
-                if(data.analysis && data.analysis.resumeScore) {
+                if (data.analysis && data.analysis.resumeScore) {
                     const ans = data.analysis;
                     feedbackDash.innerHTML = `
                         <div class="resume-score-grid">
@@ -422,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     `;
                 } else { feedbackDash.innerHTML = `<p class="error-msg">${data.error || 'Failed to analyze format.'}</p>`; }
-            } catch(e) { feedbackDash.classList.remove('hidden'); feedbackDash.innerHTML = `<p class="error-msg">Connection error.</p>`; }
+            } catch (e) { feedbackDash.classList.remove('hidden'); feedbackDash.innerHTML = `<p class="error-msg">Connection error.</p>`; }
             finally { submitBtn.textContent = 'Analyze Resume'; }
         });
     }
@@ -430,23 +443,23 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ===== AI SKILL RECOMMENDER ===== */
     const recForm = document.getElementById('recommender-form');
     const recResults = document.getElementById('recommender-results');
-    if(recForm) {
+    if (recForm) {
         recForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const input = document.getElementById('skills-input').value;
             const submitBtn = recForm.querySelector('.submit-btn span');
             submitBtn.textContent = 'Consulting AI...';
             recResults.classList.add('hidden');
-            
+
             try {
                 const skillsArr = input.split(',').map(s => s.trim());
                 const response = await fetch('/api/recommend-skills', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ currentSkills: skillsArr })
                 });
                 const data = await response.json();
-                
+
                 recResults.classList.remove('hidden');
-                if(data.success && data.recommendations) {
+                if (data.success && data.recommendations) {
                     recResults.innerHTML = '<div style="display:flex; flex-direction:column; gap:1rem;">' + data.recommendations.map(r => `
                         <div style="background: var(--bg-color); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--border);">
                             <h4 style="color: var(--primary);">${r.skill}</h4>
@@ -454,14 +467,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     `).join('') + '</div>';
                 } else { recResults.innerHTML = `<p class="error-msg">Could not generate recommendations.</p>`; }
-            } catch(e) { recResults.innerHTML = `<p class="error-msg">Connection Error.</p>`; recResults.classList.remove('hidden'); }
+            } catch (e) { recResults.innerHTML = `<p class="error-msg">Connection Error.</p>`; recResults.classList.remove('hidden'); }
             finally { submitBtn.textContent = 'Get Recommendations'; }
         });
     }
 
     /* ===== CONTACT FORM SUBMISSION ===== */
     const contactForm = document.getElementById('contact-form');
-    if(contactForm) {
+    if (contactForm) {
         const formMessage = document.getElementById('form-message');
         const submitBtn = contactForm.querySelector('.submit-btn span');
         contactForm.addEventListener('submit', async (e) => {
@@ -470,9 +483,9 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
                 const result = await response.json();
-                if (result.success) { formMessage.textContent = result.message; formMessage.className = 'form-message success-msg'; contactForm.reset(); } 
+                if (result.success) { formMessage.textContent = result.message; formMessage.className = 'form-message success-msg'; contactForm.reset(); }
                 else { formMessage.textContent = 'Failed to send message.'; formMessage.className = 'form-message error-msg'; }
-            } catch (error) { formMessage.textContent = 'An error occurred.'; formMessage.className = 'form-message error-msg'; } 
+            } catch (error) { formMessage.textContent = 'An error occurred.'; formMessage.className = 'form-message error-msg'; }
             finally { submitBtn.textContent = 'Send Message'; setTimeout(() => formMessage.textContent = '', 5000); }
         });
     }
