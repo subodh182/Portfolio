@@ -6,6 +6,7 @@ const axios = require('axios');
 const multer = require('multer');
 const pdfParse = require('pdf-parse');
 const { Groq } = require('groq-sdk');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,14 +27,48 @@ const upload = multer({ storage: multer.memoryStorage() });
 // --- API ROUTES ---
 
 // 1. Contact Form
-app.post('/api/contact', (req, res) => {
+app.post('/api/contact', async (req, res) => {
     const { name, email, subject, message } = req.body;
     if (!name || !email || !message) {
         return res.status(400).json({ success: false, message: 'Please provide name, email, and message.' });
     }
-    setTimeout(() => {
+
+    try {
+        if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+            console.warn("EMAIL_USER or EMAIL_PASS not set. Simulating success response.");
+            return res.status(200).json({ success: true, message: 'Thank you for your message! (Simulated - Email missing keys)' });
+        }
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
+            }
+        });
+
+        const mailOptions = {
+            from: `"${name}" <${process.env.EMAIL_USER}>`,
+            replyTo: email,
+            to: process.env.EMAIL_USER,
+            subject: `Portfolio Contact: ${subject || 'New Message'}`,
+            text: `You have received a new message from your portfolio website.\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
+            html: `
+                <h3>New Contact Message</h3>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Subject:</strong> ${subject}</p>
+                <hr>
+                <p><strong>Message:</strong><br>${message.replace(/\n/g, '<br>')}</p>
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
         res.status(200).json({ success: true, message: 'Thank you for your message! I will get back to you soon.' });
-    }, 1500);
+    } catch (error) {
+        console.error('Error sending email:', error);
+        res.status(500).json({ success: false, message: 'Something went wrong sending the email. Please try again later.' });
+    }
 });
 
 // 2. GitHub Projects
