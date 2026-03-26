@@ -337,10 +337,11 @@ ul {
 
 /* Hero */
 .hero-section {
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex; align-items: center;
     position: relative;
-    padding-top: var(--nav-height);
+    padding-top: calc(var(--nav-height) + 2rem);
+    padding-bottom: 2rem;
 }
 #particles-js {
     position: absolute;
@@ -348,9 +349,9 @@ ul {
     top: 0; left: 0; z-index: 0;
 }
 .hero-content { flex: 1; z-index: 2; margin-left: 2rem;}
-.hero-title { font-size: 4rem; line-height: 1.2; margin-bottom: 1rem; }
-.hero-roles { font-size: 2rem; margin-bottom: 1.5rem; font-weight: 500; }
-.hero-description { font-size: 1.2rem; color: var(--subtext); margin-bottom: 2.5rem; max-width: 500px; }
+.hero-title { font-size: 4rem; line-height: 1.2; margin-bottom: 0.5rem; }
+.hero-roles { font-size: 2rem; margin-bottom: 0.8rem; font-weight: 500; }
+.hero-description { font-size: 1.2rem; color: var(--subtext); margin-bottom: 1.5rem; max-width: 500px; }
 .hero-buttons { display: flex; gap: 1rem; }
 .hero-graphics { flex: 1; position: relative; height: 500px; display: flex; justify-content: center; align-items: center; z-index: 1;}
 .abstract-shape {
@@ -740,7 +741,7 @@ footer {
     .hamburger { display: flex; z-index: 1002; }
     .theme-switch { z-index: 1002; }
     
-    .hero-section { flex-direction: column; text-align: center; padding-top: calc(var(--nav-height) + 4rem); }
+    .hero-section { flex-direction: column; text-align: center; padding-top: calc(var(--nav-height) + 2rem); }
     .hero-content { margin-left: 0; display: flex; flex-direction: column; align-items: center; padding: 0 1.5rem; width: 100%; }
     .hero-description { text-align: center; width: 100%; }
     .hero-buttons { justify-content: center; }
