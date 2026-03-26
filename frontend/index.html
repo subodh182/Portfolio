@@ -295,7 +295,7 @@
                 <h2 class="section-title text-center">Tech Blog</h2>
                 <div class="blog-grid">
                     <article class="blog-card animate-on-scroll">
-                        <div class="blog-image" style="background: linear-gradient(135deg, #4f46e5, #ec4899);"></div>
+                        <div class="blog-image" style="background: url('assets/AI%20Resume%20Analyser.png') center/cover no-repeat;"></div>
                         <div class="blog-content">
                             <span class="blog-date">March 2026</span>
                             <h3>AI Resume Analyzer</h3>
@@ -309,7 +309,7 @@
                         </div>
                     </article>
                     <article class="blog-card animate-on-scroll delay-1">
-                        <div class="blog-image" style="background: linear-gradient(135deg, #10b981, #3b82f6);"></div>
+                        <div class="blog-image" style="background: url('assets/Expense%20Tracker.png') center/cover no-repeat;"></div>
                         <div class="blog-content">
                             <span class="blog-date">February 2026</span>
                             <h3>Expense Tracker Webapp</h3>
@@ -406,7 +406,15 @@
             </div>
             <div class="chatbot-input">
                 <input type="text" id="chatbot-text" placeholder="Type a message..." aria-label="Type a message">
-                <button id="chatbot-send">
+                <button id="voice-assistant-btn" aria-label="Voice Assistant" style="display: flex; align-items: center; justify-content: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="22"></line>
+                    </svg>
+                </button>
+                <button id="chatbot-send" style="display: none; align-items: center; justify-content: center;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -415,16 +423,7 @@
                 </button>
             </div>
         </div>
-        <div style="display: flex; gap: 10px; margin-top: 10px;">
-            <button id="voice-assistant-btn" class="chat-btn" aria-label="Voice Assistant"
-                style="background: linear-gradient(135deg, #10b981, #047857); display: flex; align-items: center; justify-content: center;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
-                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                    <line x1="12" y1="19" x2="12" y2="22"></line>
-                </svg>
-            </button>
+        <div style="display: flex; gap: 10px; margin-top: 10px; justify-content: flex-end;">
             <button class="chatbot-toggle" id="chatbot-toggle"
                 style="display: flex; align-items: center; justify-content: center;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
