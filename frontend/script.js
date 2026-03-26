@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const msg = chatbotInput.value.trim();
             if (!msg) return;
             const userBubble = document.createElement('div'); userBubble.className = 'user-message bubble'; userBubble.textContent = msg;
-            chatbotBody.appendChild(userBubble); chatbotInput.value = ''; chatbotBody.scrollTop = chatbotBody.scrollHeight;
+            chatbotBody.appendChild(userBubble); chatbotInput.value = ''; chatbotInput.dispatchEvent(new Event('input')); chatbotBody.scrollTop = chatbotBody.scrollHeight;
             const botBubble = document.createElement('div'); botBubble.className = 'bot-message bubble'; botBubble.textContent = "Typing...";
             chatbotBody.appendChild(botBubble); chatbotBody.scrollTop = chatbotBody.scrollHeight;
             try {
@@ -385,6 +385,26 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         chatbotSend.addEventListener('click', handleSend);
         chatbotInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
+        
+        // Dynamically toggle Mic and Send buttons
+        chatbotInput.addEventListener('input', () => {
+            const micBtn = document.getElementById('voice-assistant-btn');
+            if (chatbotInput.value.trim().length > 0) {
+                chatbotSend.style.display = 'flex';
+                if (micBtn) micBtn.style.display = 'none';
+            } else {
+                chatbotSend.style.display = 'none';
+                if (micBtn) micBtn.style.display = 'flex';
+            }
+        });
+        
+        // Ensure buttons reset when message is sent
+        const originalHandleSend = handleSend;
+        chatbotSend.addEventListener('click', () => {
+            const micBtn = document.getElementById('voice-assistant-btn');
+            chatbotSend.style.display = 'none';
+            if (micBtn) micBtn.style.display = 'flex';
+        });
     }
 
     /* ===== AI RESUME ANALYZER (STRUCTURED DASHBOARD) ===== */
