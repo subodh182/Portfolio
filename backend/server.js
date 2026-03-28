@@ -164,24 +164,31 @@ app.post('/api/analyze-resume', upload.single('resume'), async (req, res) => {
             resumeText = req.file.buffer.toString('utf8');
         }
 
-        const prompt = `You are an expert tech recruiter and AI Resume Analyzer scoring a candidate. Given the following resume text, evaluate it thoroughly.
-        You MUST return ONLY valid JSON with the following exact keys:
+        const prompt = `You are an expert tech recruiter and AI Resume Analyzer scoring a candidate. Given the following document text, evaluate it thoroughly.
+        First, determine if the document is actually a resume. If it is clearly not a resume (e.g., a bank statement, a receipt, a manual, or completely random text), you MUST return {"isResume": false} and nothing else.
+        If it IS a resume, you MUST return ONLY valid JSON with the following exact keys:
+        - "isResume" (Boolean, true)
         - "resumeScore" (Integer out of 100)
         - "atsScore" (Integer out of 100 representing parsability/ATS-readiness)
         - "skillsDetected" (Array of 3 to 6 strings)
         - "missingSkills" (Array of 2 to 4 strings that would improve the candidate profile)
         - "suggestions" (Array of 2 to 3 actionable improvement sentences)
 
-        Resume Text:\n${resumeText.substring(0, 3000)}`;
+        Document Text:\n${resumeText.substring(0, 3000)}`;
 
         const chatCompletion = await groq.chat.completions.create({
             messages: [{ role: "user", content: prompt }],
             model: "llama-3.3-70b-versatile",
-            temperature: 0.2, // low temp for JSON format stability
+            temperature: 0.1, // low temp for JSON format stability
             response_format: { type: "json_object" },
         });
 
         const jsonResult = JSON.parse(chatCompletion.choices[0]?.message?.content || '{}');
+        
+        if (jsonResult.isResume === false) {
+            return res.status(400).json({ error: "FILE NOT VALID: Please upload a valid resume to be analyzed." });
+        }
+        
         res.json({ analysis: jsonResult });
     } catch (error) {
         console.error("Resume Analyzer Error:", error);
